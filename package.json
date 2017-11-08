@@ -1,0 +1,26 @@
+{
+    "name": "@lizhooh/list",
+    "version": "1.0.0",
+    "description": "javascript list data structure.",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Lizhooh/list"
+    },
+    "license": "ISC",
+    "keywords": [
+        "list",
+        "algorithm",
+        "linked-list",
+        "linked"
+    ],
+    "author": "lizhooh",
+    "devDependencies": {
+        "benchmark": "^2.1.4",
+        "colors": "^1.1.2",
+        "jest": "^21.2.1"
+    }
+}
