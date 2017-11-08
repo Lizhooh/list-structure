@@ -1,7 +1,12 @@
 
 ## list-structure
 Using ES6 to build the list structure, suitable for nodejs.
-使用  ES6 构建的 链表结构，适合于 nodejs 上。
+
+使用 ES6 构建的链表结构，适合于 nodejs 上。
+
+<a href="https://www.npmjs.com/package/list-structure"><img src="https://img.shields.io/npm/v/list-structure.svg"></a>
+<a href="https://www.npmjs.com/package/list-structure"><img src="https://img.shields.io/npm/dm/list-structure.svg"></a>
+
 
 目前有几种结构：
 - LinkedList [链表]
@@ -12,6 +17,13 @@ Using ES6 to build the list structure, suitable for nodejs.
 npm install --save list-structure
 # or
 yarn add list-structure
+```
+
+**test：**
+```bash
+git clone https://github.com/Lizhooh/list-structure.git
+npm install
+npm test
 ```
 
 ## LinkedList
