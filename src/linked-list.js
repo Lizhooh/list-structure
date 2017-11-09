@@ -349,5 +349,8 @@ class LinkedList extends Object {
     }
 }
 
-module && (module.exports = LinkedList);
+if (typeof module !== undefined) {
+    module.exports = LinkedList;
+}
+
 

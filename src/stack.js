@@ -112,4 +112,6 @@ class Stack extends Object {
     }
 }
 
-module && (module.exports = Stack);
+if (typeof module !== undefined) {
+    module.exports = Stack;
+}
