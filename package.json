@@ -1,6 +1,6 @@
 {
     "name": "list-structure",
-    "version": "1.0.5",
+    "version": "1.1.1",
     "description": "javascript list data structure.",
     "main": "index.js",
     "scripts": {
@@ -15,12 +15,14 @@
         "list",
         "algorithm",
         "linked-list",
-        "linked"
+        "linked",
+        "stack",
+        "quque",
+        "task",
+        "structure"
     ],
     "author": "lizhooh",
     "devDependencies": {
-        "benchmark": "^2.1.4",
-        "colors": "^1.1.2",
         "jest": "^21.2.1"
     }
 }

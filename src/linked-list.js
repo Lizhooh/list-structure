@@ -159,9 +159,14 @@ class LinkedList extends Object {
      * @return{Object}
      */
     from(arr) {
-        arr.forEach((item, index) => {
-            this.append(item);
-        });
+        if (Array.isArray(arr)) {
+            arr.forEach((item, index) => {
+                this.append(item);
+            });
+        }
+        else {
+            console.warn('from: the arr is not a array.');
+        }
         return this;
     }
 
