@@ -3,6 +3,11 @@ const { LinkedList } = require('../src');
 
 describe('List - LinkedList', () => {
 
+    test('size', () => {
+        let list = new LinkedList(['A', 'B', 'C']);
+        expect(list.size()).toBe(3);
+    });
+
     test('toArray', () => {
         let list = new LinkedList(['A', 'B', 'C']);
         expect(list.toArray()).toEqual(['A', 'B', 'C']);

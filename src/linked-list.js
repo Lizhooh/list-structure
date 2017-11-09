@@ -5,7 +5,7 @@ class LinkedList extends Object {
 
         this._head = null;
         this._tail = null;
-        this.length = 0;
+        this._length = 0;
         this._Node = function (element, next = null) {
             return {
                 element: element,
@@ -36,7 +36,7 @@ class LinkedList extends Object {
         }
 
         this._tail = node;
-        this.length++;
+        this._length++;
         return this;
     }
 
@@ -52,7 +52,7 @@ class LinkedList extends Object {
             this._tail = node;
         }
         this._head = node;
-        this.length++;
+        this._length++;
         return this;
     }
 
@@ -76,7 +76,7 @@ class LinkedList extends Object {
      * @return{Object}
      */
     removeAt(index) {
-        if (index >= 0 && index < this.length) {
+        if (index >= 0 && index < this._length) {
             let current = this._head;
             if (this._head === null) return null;
             if (index === 0) {
@@ -90,11 +90,11 @@ class LinkedList extends Object {
                 }
                 temp.next = current.next;
 
-                if (index === this.length - 1) {
+                if (index === this._length - 1) {
                     this._tail = temp;
                 }
             }
-            this.length--;
+            this._length--;
         }
         else {
             console.warn('removeAt: the index is not in the range.');
@@ -134,11 +134,11 @@ class LinkedList extends Object {
         else {
             prev.next = current.next;
 
-            if (i === this.length - 1) {
+            if (i === this._length - 1) {
                 this._tail = prev;
             }
         }
-        this.length--;
+        this._length--;
         return this;
     }
 
@@ -169,7 +169,7 @@ class LinkedList extends Object {
      * @return{Boolean}
      */
     isEmpty() {
-        return this.length === 0;
+        return this._length === 0;
     }
 
     /**
@@ -178,7 +178,7 @@ class LinkedList extends Object {
     clear() {
         this._head = null;
         this._tail = null;
-        this.length = 0;
+        this._length = 0;
         return this;
     }
 
@@ -187,7 +187,7 @@ class LinkedList extends Object {
      * @param{Any} element
      */
     insert(index, element) {
-        if (index >= 1 && index < this.length) {
+        if (index >= 1 && index < this._length) {
             let current = this._head;
             let i = 0, temp = current;
             while (i++ < index) {
@@ -198,12 +198,12 @@ class LinkedList extends Object {
                 element: element,
                 next: temp.next,
             }
-            this.length++;
+            this._length++;
         }
         else if (index === 0) {
             this.prepend(element);
         }
-        else if (index === this.length) {
+        else if (index === this._length) {
             this.append(element);
         }
         else {
@@ -218,7 +218,7 @@ class LinkedList extends Object {
      * @return{Boolean}
      */
     hasAt(index) {
-        if (index >= 0 && index < this.length) {
+        if (index >= 0 && index < this._length) {
             let i = 0, current = this._head;
             while (current) {
                 if (i === index) {
@@ -295,7 +295,7 @@ class LinkedList extends Object {
      * @param{Number} index: 0 - length
      */
     get(index) {
-        if (index >= 0 && index < this.length) {
+        if (index >= 0 && index < this._length) {
             let current = this._head, i = 0;
             while (current) {
                 if (i++ === index) return current.element;
@@ -313,7 +313,7 @@ class LinkedList extends Object {
      * @return{Object}
      */
     set(index, element) {
-        if (index >= 0 && index < this.length) {
+        if (index >= 0 && index < this._length) {
             let current = this._head, i = 0;
             while (current) {
                 if (i++ === index) {
@@ -328,8 +328,21 @@ class LinkedList extends Object {
         }
         return this;
     }
-}
 
+    /**
+     * @return{Number}
+     */
+    get length() {
+        return this._length;
+    }
+
+    /**
+     * @return{Number}
+     */
+    size() {
+        return this._length;
+    }
+}
 
 module && (module.exports = LinkedList);
 
