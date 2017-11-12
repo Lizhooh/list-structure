@@ -1,25 +1,12 @@
 
-class Stack extends Object {
+class Queue extends Object {
 
     constructor(arr) {
         super();
+
         this._list = [];
 
         Array.isArray(arr) && arr.forEach(i => this.push(i));
-    }
-
-    /**
-     * @return{Array}
-     */
-    toArray() {
-        return this._list.slice();
-    }
-
-    /**
-     * @return{String}
-     */
-    toString() {
-        return this._list.toString();
     }
 
     get length() {
@@ -30,7 +17,21 @@ class Stack extends Object {
      * @return{Number}
      */
     size() {
-        return this.length;
+        return this._list.length;
+    }
+
+    /**
+     * @return{String}
+     */
+    toString() {
+        return this._list.toString();
+    }
+
+    /**
+     * @return{Array}
+     */
+    toArray() {
+        return this._list.slice();
     }
 
     /**
@@ -46,34 +47,43 @@ class Stack extends Object {
      * @return{Any}
      */
     pop() {
-        return this._list.pop();
+        return this._list.shift();
     }
 
     /**
      * @return{Any}
      */
-    peek() {
-        if (this._list.length < 1) return null;
-        return this._list[this._list.length - 1];
+    front() {
+        return this._list[0];
     }
 
     /**
-     * @return{Object}
+     * @return{Any}
      */
-    clear() {
-        this._list = [];
-        return this;
+    back() {
+        return this._list[this._list.length - 1];
     }
 
     /**
      * @return{Boolean}
      */
     isEmpty() {
-        return this._list.length === 0;
+        return this.length === 0;
     }
 
     /**
-     * @param{Array}
+     * @param{Function} callback
+     * @return{Object}
+     */
+    forEach(cb) {
+        if (typeof cb === 'function') {
+            this._list.forEach((item, index) => cb(item, index));
+        }
+        return this;
+    }
+
+    /**
+     * @param{Array} arr
      * @return{Object}
      */
     from(arr) {
@@ -83,6 +93,14 @@ class Stack extends Object {
         else {
             console.warn('from: the arr is not a array.');
         }
+        return this;
+    }
+
+    /**
+     * @return{Object}
+     */
+    clear() {
+        this._list = [];
         return this;
     }
 
@@ -101,20 +119,8 @@ class Stack extends Object {
         }
         return false;
     }
-
-    /**
-     * @param{Function} callback: item, index
-     */
-    forEach(cb) {
-        if (typeof cb === 'function') {
-            let i = this._list.length;
-            while (i--) {
-                cb(this._list[i], i);
-            }
-        }
-    }
 }
 
 if (typeof module !== undefined) {
-    module.exports = Stack;
+    module.exports = Queue;
 }

@@ -18,6 +18,20 @@ class LinkedList extends Object {
     }
 
     /**
+     * @return{Number}
+     */
+    get length() {
+        return this._length;
+    }
+
+    /**
+     * @return{Number}
+     */
+    size() {
+        return this._length;
+    }
+
+    /**
      * @param{Any} element
      * @return{Object}
      */
@@ -334,23 +348,12 @@ class LinkedList extends Object {
         return this;
     }
 
-    /**
-     * @return{Number}
-     */
-    get length() {
-        return this._length;
-    }
 
-    /**
-     * @return{Number}
-     */
-    size() {
-        return this._length;
-    }
 }
 
 if (typeof module !== undefined) {
     module.exports = LinkedList;
 }
+
 
 

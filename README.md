@@ -10,6 +10,7 @@ Using ES6 to build linked lists, stacks, queues and other structures. Need Commo
 **structures：**
 - [LinkedList [链表]](https://www.npmjs.com/package/list-structure#linkedlist)
 - [Stack [栈]](https://www.npmjs.com/package/list-structure#stack)
+- [Queue [队列]](https://www.npmjs.com/package/list-structure#queue)
 
 **insert：**
 ```bash
@@ -29,24 +30,24 @@ npm test
 
 ### API
 
-method | return | explain
+function | return | explain
 :--- | :--- | :---
 `size()` | Number |
-`append(element)` | Object |
-`prepend(element)` | Object |
-`forEach((item, index))` | Object |
+`append(element)` | LinkedList |
+`prepend(element)` | LinkedList |
+`forEach((item, index))` | LinkedList |
 `removeAt(index)` | Object |
 `remove(any)` | Object |
 `toArray()` | Array |
-`from(array)` | Object |
+`from(arr)` | LinkedList |
 `isEmpty()` | Boolean |
-`clear()` | Object |
+`clear()` | LinkedList |
 `insert(index, element)` | Any |
 `hasAt(index)` | Boolean |
 `has(any)` | Boolean |
 `findIndex(any)` | Number |
 `find(any)` | Any |
-`set(index, element)` | Object |
+`set(index, element)` | LinkedList |
 `get(index)` | Any |
 
 ### example
@@ -90,19 +91,21 @@ console.log(index);              // 0
 ```
 
 ## stack
+Using array to implement stack structure.
 
 ### API
 
-method | return | explain
+function | return | explain
 :--- | :--- | :---
 `size()` | Number |
-`push(element)` | Object |
-`pop()` | Object |
-`forEach((item, index))` | Object |
+`push(element)` | Stack |
+`pop()` | Any |
+`peek()` | Any |
+`forEach((item, index))` | Stack |
 `toArray()` | Array |
-`from(array)` | Object |
+`from(arr)` | Stack |
 `isEmpty()` | Boolean |
-`clear()` | Object |
+`clear()` | Stack |
 `has(any)` | Boolean |
 `toString()` | String |
 
@@ -127,3 +130,39 @@ stack2.has(i => i.id === 3);    // true
 stack2.has(i => i.id === 5);    // false
 ```
 
+## queue
+Using array to implement queue structure.
+
+### API
+
+function | return | explain
+:--- | :--- | :---
+`size()` | Number |
+`push(element)` | Queue |
+`pop()` | Any |
+`front()` | Any |
+`back()` | Any |
+`forEach((item, index))` | Queue |
+`toArray()` | Array |
+`from(arr)` | Queue |
+`isEmpty()` | Boolean |
+`clear()` | Queue |
+`has(any)` | Boolean |
+`toString()` | String |
+
+### example
+
+```js
+const { Queue } = require('list-structure');
+const queue = new Queue();
+
+queue.push('A');
+queue.from(['B', 'C', 'D']);
+
+queue.front();             // 'A'
+queue.back();              // 'D'
+queue.pop();               // 'A'
+queue.has(i => i === 'D'); // true
+queue.size();              // 3
+queue.toArray();           // ['B', 'C', 'D']
+```
