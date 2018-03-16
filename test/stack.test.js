@@ -1,5 +1,4 @@
-const { Stack } = require('../src');
-
+const Stack = require('../src/stack');
 
 describe('Stack', () => {
 
@@ -29,7 +28,7 @@ describe('Stack', () => {
     test('clear', () => {
         const stack = new Stack(['A', 'B', 'C']);
         stack.clear();
-        expect(stack.length).toBe(0);
+        expect(stack.size()).toBe(0);
     });
 
     test('isEmpty', () => {
@@ -48,7 +47,6 @@ describe('Stack', () => {
 
     test('has', () => {
         const stack = new Stack(['A', 'B', 'C']);
-        expect(stack.has('A')).toBeTruthy();
         expect(stack.has(i => i === 'C')).toBeTruthy();
         expect(stack.has(i => i === 'S')).toBeFalsy();
     });

@@ -36,17 +36,16 @@ function | return | explain
 `append(element)` | LinkedList |
 `prepend(element)` | LinkedList |
 `forEach((item, index))` | LinkedList |
-`removeAt(index)` | Object |
-`remove(any)` | Object |
+`sort(compareFunction)` | LinkedList |
+`remove(index)` | Object |
 `toArray()` | Array |
 `from(arr)` | LinkedList |
 `isEmpty()` | Boolean |
 `clear()` | LinkedList |
 `insert(index, element)` | Any |
-`hasAt(index)` | Boolean |
-`has(any)` | Boolean |
-`findIndex(any)` | Number |
-`find(any)` | Any |
+`has(callback)` | Boolean |
+`findIndex(callback)` | Number |
+`find(callback)` | Any |
 `set(index, element)` | LinkedList |
 `get(index)` | Any |
 
@@ -71,16 +70,17 @@ const list4 = new LinkedList([
     { name: 'cer', id: 3 },
 ]);
 
-console.log(list4.hasAt(1));                   // true
 console.log(list4.has(i => i.name === 'aer')); // true
 
 list4.prepend({ name: 'der', id: 4 });
 list4.insert(2, { name: 'eer', id: 5 });
 list4.forEach(i => console.log(i));
 
-list4.removeAt(2);
-list4.remove(i => i.id === 3);
-console.log(list4.length)        // 3
+list4.sort((a, b) => b.id - a.id);
+console.log(list4.toArray().map(i => i.id));  // [5, 4, 3, 2, 1]
+
+list4.remove(2);
+console.log(list4.length)        // 4
 
 console.log(list4.get(0));       // { name: 'der', id: 4 }
 list4.set(0, { name: 'fer', id: 6 });
@@ -106,8 +106,7 @@ function | return | explain
 `from(arr)` | Stack |
 `isEmpty()` | Boolean |
 `clear()` | Stack |
-`has(any)` | Boolean |
-`toString()` | String |
+`has(callback)` | Boolean |
 
 ### example
 
@@ -147,8 +146,7 @@ function | return | explain
 `from(arr)` | Queue |
 `isEmpty()` | Boolean |
 `clear()` | Queue |
-`has(any)` | Boolean |
-`toString()` | String |
+`has(callback)` | Boolean |
 
 ### example
 

@@ -1,74 +1,56 @@
 
-class Queue extends Object {
-
+class Queue {
     constructor(arr) {
-        super();
+        this._head = null;
+        this._tail = null;
+        this._length = 0;
+        this._node = (el, next = null) => ({
+            element: el,
+            next: next,
+        });
 
-        this._list = [];
-
-        Array.isArray(arr) && arr.forEach(i => this.push(i));
-    }
-
-    get length() {
-        return this._list.length;
+        this.from(arr);
     }
 
     /**
      * @return{Number}
      */
     size() {
-        return this._list.length;
-    }
-
-    /**
-     * @return{String}
-     */
-    toString() {
-        return this._list.toString();
-    }
-
-    /**
-     * @return{Array}
-     */
-    toArray() {
-        return this._list.slice();
-    }
-
-    /**
-     * @param{Any} element:
-     * @return{Object}
-     */
-    push(element) {
-        this._list.push(element);
-        return this;
-    }
-
-    /**
-     * @return{Any}
-     */
-    pop() {
-        return this._list.shift();
-    }
-
-    /**
-     * @return{Any}
-     */
-    front() {
-        return this._list[0];
-    }
-
-    /**
-     * @return{Any}
-     */
-    back() {
-        return this._list[this._list.length - 1];
+        return this._length;
     }
 
     /**
      * @return{Boolean}
      */
     isEmpty() {
-        return this.length === 0;
+        return this.size() === 0;
+    }
+
+    push(el) {
+        if (this.size() === 0) {
+            this._tail = this._head = this._node(el);
+        }
+        else {
+            this._tail.next = this._node(el);
+            this._tail = this._tail.next;
+        }
+        this._length++;
+        return this;
+    }
+
+    pop() {
+        const p = this._head;
+        this._head = this._head.next;
+        this._length--;
+        return p.element;
+    }
+
+    front() {
+        return this._head.element;
+    }
+
+    back() {
+        return this._tail.element;
     }
 
     /**
@@ -77,9 +59,24 @@ class Queue extends Object {
      */
     forEach(cb) {
         if (typeof cb === 'function') {
-            this._list.forEach((item, index) => cb(item, index));
+            let current = this._head;
+            let i = 0;
+            while (current && i < this.size()) {
+                cb(current.element);
+                current = current.next;
+                i++;
+            }
         }
         return this;
+    }
+
+    /**
+     * @return{Array}
+     */
+    toArray() {
+        let arr = [];
+        this.forEach(i => arr.push(i));
+        return arr;
     }
 
     /**
@@ -90,9 +87,6 @@ class Queue extends Object {
         if (Array.isArray(arr)) {
             arr.forEach(i => this.push(i));
         }
-        else {
-            console.warn('from: the arr is not a array.');
-        }
         return this;
     }
 
@@ -100,27 +94,28 @@ class Queue extends Object {
      * @return{Object}
      */
     clear() {
-        this._list = [];
+        this._head = null;
+        this._tail = null;
+        this._length = 0;
         return this;
     }
 
     /**
-     * @param{Any}
+     * @param{Function} callback
      * @return{Boolean}
      */
-    has(any) {
-        for (let i = 0, len = this._list.length; i < len; i++) {
-            if (typeof any === 'function' && any(this._list[i]) === true) {
-                return true;
-            }
-            else if (any === this._list[i]) {
-                return true;
+    has(cb) {
+        if (typeof cb === 'function') {
+            let current = this._head;
+            let i = 0;
+            while (current && i < this.size()) {
+                if (!!cb(current.element)) return true;
+                current = current.next;
+                i++;
             }
         }
         return false;
     }
 }
 
-if (typeof module !== undefined) {
-    module.exports = Queue;
-}
+module.exports = Queue;

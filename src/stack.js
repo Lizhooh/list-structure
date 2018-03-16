@@ -1,11 +1,10 @@
-
 class Stack extends Object {
 
     constructor(arr) {
         super();
         this._list = [];
 
-        Array.isArray(arr) && arr.forEach(i => this.push(i));
+        this.from(arr);
     }
 
     /**
@@ -16,21 +15,10 @@ class Stack extends Object {
     }
 
     /**
-     * @return{String}
-     */
-    toString() {
-        return this._list.toString();
-    }
-
-    get length() {
-        return this._list.length;
-    }
-
-    /**
      * @return{Number}
      */
     size() {
-        return this.length;
+        return this._list.length;
     }
 
     /**
@@ -53,8 +41,8 @@ class Stack extends Object {
      * @return{Any}
      */
     peek() {
-        if (this._list.length < 1) return null;
-        return this._list[this._list.length - 1];
+        if (this.size() < 1) return null;
+        return this._list[this.size() - 1];
     }
 
     /**
@@ -69,7 +57,7 @@ class Stack extends Object {
      * @return{Boolean}
      */
     isEmpty() {
-        return this._list.length === 0;
+        return this.size() === 0;
     }
 
     /**
@@ -80,23 +68,17 @@ class Stack extends Object {
         if (Array.isArray(arr)) {
             arr.forEach(i => this.push(i));
         }
-        else {
-            console.warn('from: the arr is not a array.');
-        }
         return this;
     }
 
     /**
-     * @param{Any}
+     * @param{Function} cb
      * @return{Boolean}
      */
-    has(any) {
-        for (let i = 0, len = this._list.length; i < len; i++) {
-            if (typeof any === 'function' && any(this._list[i]) === true) {
-                return true;
-            }
-            else if (any === this._list[i]) {
-                return true;
+    has(cb) {
+        if (typeof cb === 'function') {
+            for (let i = 0, len = this.size(); i < len; i++) {
+                if (!!cb(this._list[i])) return true;
             }
         }
         return false;
@@ -107,7 +89,7 @@ class Stack extends Object {
      */
     forEach(cb) {
         if (typeof cb === 'function') {
-            let i = this._list.length;
+            let i = this.size();
             while (i--) {
                 cb(this._list[i], i);
             }
@@ -115,6 +97,4 @@ class Stack extends Object {
     }
 }
 
-if (typeof module !== undefined) {
-    module.exports = Stack;
-}
+module.exports = Stack;

@@ -1,5 +1,4 @@
-const { Queue } = require('../src');
-
+const Queue = require('../src/queue');
 
 describe('Queue', () => {
 
@@ -37,7 +36,7 @@ describe('Queue', () => {
     test('clear', () => {
         const queue = new Queue(['A', 'B', 'C']);
         queue.clear();
-        expect(queue.length).toBe(0);
+        expect(queue.size()).toBe(0);
     });
 
     test('isEmpty', () => {
@@ -56,7 +55,6 @@ describe('Queue', () => {
 
     test('has', () => {
         const queue = new Queue(['A', 'B', 'C']);
-        expect(queue.has('A')).toBeTruthy();
         expect(queue.has(i => i === 'C')).toBeTruthy();
         expect(queue.has(i => i === 'S')).toBeFalsy();
     });
